@@ -10,8 +10,8 @@ spec:
     fsGroup: 0
     runAsNonRoot: false
   containers:
-  - name: jenkins-awscli-agent
-    image: amazon/aws-cli # Enter the jenkins inbound agent image.
+  - name: jenkins-docker-agent
+    image: docker:latest # Enter the jenkins inbound agent image.
     command:
     - cat
     tty: true
