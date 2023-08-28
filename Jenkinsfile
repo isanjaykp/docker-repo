@@ -39,20 +39,6 @@ stages {
         }
       }
     }
-    stage('Docker version'){
-      steps {
-        container('jenkins-docker-agent'){
-            withCredentials([[
-              $class: 'AmazonWebServicesCredentialsBinding',
-              credentialsId: "${CFN_CREDENTIALS_ID}",
-              accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-              secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
 
-                sh 'docker version'
-               
-              }
-        }
-      }
-    }
   }
 }
