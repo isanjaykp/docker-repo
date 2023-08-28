@@ -33,7 +33,7 @@ stages {
               accessKeyVariable: 'AWS_ACCESS_KEY_ID',
               secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
 
-                sh 'docker version'
+                sh 'echo "version"'
                
               }
         }
