@@ -1,7 +1,7 @@
 pipeline {
   agent {
     kubernetes {
-      label 'jenkins-backup-job'
+      label 'jenkins-docker-job'
       defaultContainer 'jnlp'
       yamlFile 'k8s/k8sPodTemplate.yaml'
     }
