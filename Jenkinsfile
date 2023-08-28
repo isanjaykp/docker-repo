@@ -24,7 +24,7 @@ parameters {
     timeout(time: 60, unit: 'MINUTES')
   }
 stages {
-    stage('Docker Jenkins'){
+    stage('Docker version'){
       steps {
         container('jenkins-docker-agent'){
             withCredentials([[
@@ -34,7 +34,25 @@ stages {
               secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
 
                 sh 'docker version'
-                sh 'status docker'
+               
+              }
+        }
+      }
+    }
+    stage('Docker pull'){
+      steps {
+        container('jenkins-docker-agent'){
+            withCredentials([[
+              $class: 'AmazonWebServicesCredentialsBinding',
+              credentialsId: "${CFN_CREDENTIALS_ID}",
+              accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+              secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
+
+                sh 'sudo docker pull dwolla/jenkins-agent-awscli'
+                sh 'sudo aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 825802405308.dkr.ecr.us-east-1.amazonaws.com'
+                sh 'sudo docker tag dwolla/jenkins-agent-awscli:latest 825802405308.dkr.ecr.us-east-1.amazonaws.com/jenkins-agent-awscli:latest'
+                sh 'sudo docker push 825802405308.dkr.ecr.us-east-1.amazonaws.com/jenkins-agent-awscli:latest'
+               
               }
         }
       }
