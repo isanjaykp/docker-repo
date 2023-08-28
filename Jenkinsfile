@@ -34,7 +34,7 @@ stages {
               secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
 
                 sh 'docker version'
-                sh 'systemctl status docker'
+                sh 'status docker'
               }
         }
       }
