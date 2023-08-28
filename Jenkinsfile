@@ -48,10 +48,10 @@ stages {
               accessKeyVariable: 'AWS_ACCESS_KEY_ID',
               secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
 
-                sh 'sudo docker pull dwolla/jenkins-agent-awscli'
-                sh 'sudo aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 825802405308.dkr.ecr.us-east-1.amazonaws.com'
-                sh 'sudo docker tag dwolla/jenkins-agent-awscli:latest 825802405308.dkr.ecr.us-east-1.amazonaws.com/jenkins-agent-awscli:latest'
-                sh 'sudo docker push 825802405308.dkr.ecr.us-east-1.amazonaws.com/jenkins-agent-awscli:latest'
+                sh 'docker pull dwolla/jenkins-agent-awscli'
+                sh 'aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 825802405308.dkr.ecr.us-east-1.amazonaws.com'
+                sh 'docker tag dwolla/jenkins-agent-awscli:latest 825802405308.dkr.ecr.us-east-1.amazonaws.com/jenkins-agent-awscli:latest'
+                sh 'docker push 825802405308.dkr.ecr.us-east-1.amazonaws.com/jenkins-agent-awscli:latest'
                
               }
         }
