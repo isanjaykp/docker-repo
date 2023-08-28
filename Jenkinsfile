@@ -33,13 +33,13 @@ stages {
               accessKeyVariable: 'AWS_ACCESS_KEY_ID',
               secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
 
-                sh 'echo "version"'
+                sh 'docker version'
                
               }
         }
       }
     }
-    stage('Docker pull'){
+    stage('Docker version'){
       steps {
         container('jenkins-docker-agent'){
             withCredentials([[
@@ -47,18 +47,8 @@ stages {
               credentialsId: "${CFN_CREDENTIALS_ID}",
               accessKeyVariable: 'AWS_ACCESS_KEY_ID',
               secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
-                sh 'uname -a'
-                sh 'sudo yum update -y'
-                sh 'sudo amazon-linux-extras install docker'
-                sh 'sudo yum install -y docker'
-                sh 'sudo service docker start"' 
-                sh 'sudo docker version'
 
-
-                sh 'docker pull dwolla/jenkins-agent-awscli'
-                sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 825802405308.dkr.ecr.us-east-1.amazonaws.com'
-                sh 'docker tag dwolla/jenkins-agent-awscli:latest 825802405308.dkr.ecr.us-east-1.amazonaws.com/jenkins-agent-awscli:latest'
-                sh 'docker push 825802405308.dkr.ecr.us-east-1.amazonaws.com/jenkins-agent-awscli:latest'
+                sh 'docker version'
                
               }
         }
