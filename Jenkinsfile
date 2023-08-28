@@ -48,7 +48,9 @@ stages {
               accessKeyVariable: 'AWS_ACCESS_KEY_ID',
               secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
                 sh 'uname -a'
-                sh 'apt-get install unzip'
+                sh 'wget  https://bootstrap.pypa.io/get-pip.py'
+                sh 'which python'
+                sh 'python3 get-pip.py --user'
                 sh 'wget "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"' 
                 sh 'unzip awscliv2.zip' 
                 sh './aws/install'
