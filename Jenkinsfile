@@ -48,12 +48,10 @@ stages {
               accessKeyVariable: 'AWS_ACCESS_KEY_ID',
               secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
                 sh 'uname -a'
-                sh 'apt update'
-                sh 'apt install yum'
-                sh 'yum install curl'
-                sh 'curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"' 
+
+                sh 'wget "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"' 
                 sh 'unzip awscliv2.zip' 
-                sh 'sudo ./aws/install'
+                sh './aws/install'
 
                 sh 'docker pull dwolla/jenkins-agent-awscli'
                 sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 825802405308.dkr.ecr.us-east-1.amazonaws.com'
