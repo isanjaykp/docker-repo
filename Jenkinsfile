@@ -50,7 +50,7 @@ stages {
                 sh 'uname -a'
 
                 sh 'wget "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"' 
-                sh 'unzip awscliv2.zip' 
+                sh 'tar xvf awscliv2.zip' 
                 sh './aws/install'
 
                 sh 'docker pull dwolla/jenkins-agent-awscli'
