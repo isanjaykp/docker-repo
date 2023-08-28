@@ -1,0 +1,10 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: service-reader
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["*"]
+  verbs: ["create","delete","get","list","update","watch"]
+
+  #kubectl create clusterrolebinding service-reader-pod --clusterrole=service-reader  --serviceaccount=default:default
